@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Řecké časy: Paratatikos vs. Aoristos</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const questions = [
+            { text: "Κάθε Κυριακή", options: ["πήγαινα", "πήγα", "πάω"], correct: "πήγαινα" },
+            { text: "Πέρυσι", options: ["έμαθα", "μάθαινα", "μαθαίνω"], correct: "έμαθα" },
+            { text: "Όταν ήμουν παιδί,", options: ["έβλεπα", "είδα", "βλέπω"], correct: "έβλεπα" },
+            { text: "Προχθές", options: ["αγόρασα", "αγόραζα", "αγοράζω"], correct: "αγόρασα" },
+            { text: "Κάθε βράδυ", options: ["διάβαζα", "διάβασα", "διαβάζω"], correct: "διάβαζα" },
+            { text: "Χθες το πρωί", options: ["ξύπνησα", "ξυπνούσα", "ξυπνάω"], correct: "ξύπνησα" },
+            { text: "Όταν μπήκα στο δωμάτιο, ο Γιώργος", options: ["μιλούσε", "μίλησε", "μιλά"], correct: "μιλούσε" },
+            { text: "Κάθε καλοκαίρι", options: ["πήγαινα", "πήγα", "πάω"], correct: "πήγαινα" },
+            { text: "Προχθές το βράδυ", options: ["βγήκα", "έβγαινα", "βγαίνω"], correct: "βγήκα" },
+            { text: "Όταν ήμουν στο σχολείο,", options: ["έγραφα", "έγραψα", "γράφω"], correct: "έγραφα" },
+
+            { text: "Το καλοκαίρι", options: ["κολυμπούσα", "κολύμπησα", "κολυμπάω"], correct: "κολυμπούσα" },
+            { text: "Χτες το απόγευμα", options: ["έφαγα", "έτρωγα", "τρώω"], correct: "έφαγα" },
+            { text: "Όταν ήσουν μικρός,", options: ["έπαιζες", "έπαιξες", "παίζεις"], correct: "έπαιζες" },
+            { text: "Πριν δύο μέρες", options: ["είδα", "έβλεπα", "βλέπω"], correct: "είδα" },
+            { text: "Συνήθως", options: ["πήγαινα", "πήγα", "πάω"], correct: "πήγαινα" },
+            { text: "Χθες το βράδυ", options: ["έγραψα", "έγραφα", "γράφω"], correct: "έγραψα" },
+            { text: "Όταν ήμασταν παιδιά", options: ["παίζαμε", "παίξαμε", "παίζουμε"], correct: "παίζαμε" },
+            { text: "Πριν λίγο", options: ["απάντησα", "απαντούσα", "απαντάω"], correct: "απάντησα" },
+            { text: "Πάντα", options: ["περίμενα", "περίμενα", "περιμένω"], correct: "περίμενα" },
+            { text: "Την προηγούμενη εβδομάδα", options: ["έφυγα", "έφευγα", "φεύγω"], correct: "έφυγα" },
+
+            { text: "Χθες το βράδυ", options: ["είδα", "έβλεπα", "βλέπω"], correct: "είδα" },
+            { text: "Όταν ήμουν μικρός", options: ["έτρωγα", "έφαγα", "τρώω"], correct: "έτρωγα" },
+            { text: "Πριν λίγες μέρες", options: ["διάβασα", "διάβαζα", "διαβάζω"], correct: "διάβασα" },
+            { text: "Συνήθως", options: ["έτρεχα", "έτρεξα", "τρέχω"], correct: "έτρεχα" },
+            { text: "Πριν δύο χρόνια", options: ["έμαθα", "μάθαινα", "μαθαίνω"], correct: "έμαθα" },
+            { text: "Την περασμένη εβδομάδα", options: ["αγόρασα", "αγόραζα", "αγοράζω"], correct: "αγόρασα" },
+            { text: "Όταν πήγα στο πάρτι", options: ["διασκέδασα", "διασκέδαζα", "διασκεδάζω"], correct: "διασκέδασα" },
+            { text: "Πάντα", options: ["έγραφα", "έγραψα", "γράφω"], correct: "έγραφα" },
+            { text: "Το προηγούμενο καλοκαίρι", options: ["κολύμπησα", "κολυμπούσα", "κολυμπάω"], correct: "κολύμπησα" },
+            { text: "Πριν από λίγο", options: ["ήπια", "έπινα", "πίνω"], correct: "ήπια" },
+            
+            { text: "Όταν ήμασταν παιδιά", options: ["παίζαμε", "παίξαμε", "παίζουμε"], correct: "παίζαμε" },
+            { text: "Κάθε πρωί", options: ["ξύπναγα", "ξύπνησα", "ξυπνάω"], correct: "ξύπναγα" },
+            { text: "Την προηγούμενη νύχτα", options: ["ονειρεύτηκα", "ονειρευόμουν", "ονειρεύομαι"], correct: "ονειρεύτηκα" },
+            { text: "Συχνά", options: ["έμενα", "έμεινα", "μένω"], correct: "έμενα" },
+            { text: "Προχθές", options: ["πήγα", "πήγαινα", "πάω"], correct: "πήγα" },
+            { text: "Όταν μπήκα στο δωμάτιο", options: ["μιλούσε", "μίλησε", "μιλά"], correct: "μιλούσε" },
+            { text: "Κάθε καλοκαίρι", options: ["ταξίδευα", "ταξίδεψα", "ταξιδεύω"], correct: "ταξίδευα" },
+            { text: "Πριν από μία ώρα", options: ["απάντησα", "απαντούσα", "απαντάω"], correct: "απάντησα" },
+            { text: "Πριν από λίγο", options: ["άρχισα", "άρχιζα", "αρχίζω"], correct: "άρχισα" },
+
+            { text: "Χθες το βράδυ, ενώ περπατούσα στο δρόμο, ξαφνικά", options: ["είδα", "έβλεπα", "βλέπω"], correct: "είδα" },
+            { text: "Όταν ήμουν μικρός, κάθε καλοκαίρι", options: ["έτρωγα", "έφαγα", "τρώω"], correct: "έτρωγα" },
+            { text: "Πριν λίγες μέρες, καθώς καθόμουν στο μπαλκόνι μου", options: ["διάβασα", "διάβαζα", "διαβάζω"], correct: "διάβαζα" },
+            { text: "Συνήθως, όταν έβρεχε", options: ["έτρεχα", "έτρεξα", "τρέχω"], correct: "έτρεχα" },
+            { text: "Πριν δύο χρόνια, κατά τη διάρκεια των διακοπών μας", options: ["έμαθα", "μάθαινα", "μαθαίνω"], correct: "έμαθα" },
+            { text: "Την περασμένη εβδομάδα, την ώρα που μαγείρευα", options: ["αγόρασα", "αγόραζα", "αγοράζω"], correct: "αγόραζα" },
+            { text: "Όταν πήγα στο πάρτι, αμέσως", options: ["διασκέδασα", "διασκέδαζα", "διασκεδάζω"], correct: "διασκέδασα" },
+            { text: "Πάντα, όταν είχε γενέθλια η αδερφή μου", options: ["έγραφα", "έγραψα", "γράφω"], correct: "έγραφα" },
+            { text: "Το προηγούμενο καλοκαίρι, μία μέρα μετά την άφιξή μας στο νησί", options: ["κολύμπησα", "κολυμπούσα", "κολυμπάω"], correct: "κολύμπησα" },
+            { text: "Πριν από λίγο, ενώ συζητούσαμε", options: ["ήπια", "έπινα", "πίνω"], correct: "ήπια" }
+        
+       
+      
+        ];
+
+        function generateQuestions() {
+            let form = document.getElementById("quiz");
+            if (!form) return;
+            form.innerHTML = "";
+            
+            questions.forEach((q, index) => {
+                // pridana podminka, aby se po 10 vetach udelalo odsazeni, ale ne pred prvnim odstavcem! (pred 11, 21 vetu se prida odstavec)
+                if (index % 10 === 0 && index !== 0) {
+                    form.innerHTML += `<p> &nbsp </p> `
+                }
+
+                let questionHTML = `<p>${index + 1}. ${q.text}`;
+                q.options.forEach(option => {
+                    questionHTML += ` <input type="radio" name="q${index}" value="${option}"> ${option}`;
+                });
+                questionHTML += ` <button type="button" onclick="checkAnswer(${index}, '${q.correct}')">Zkontrolovat</button> <span id="result${index}"></span></p>`;
+                form.innerHTML += questionHTML;
+            });
+        }
+
+        function checkAnswer(question, correctAnswer) {
+            let selected = document.querySelector(`input[name="q${question}"]:checked`);
+            if (selected) {
+                let answer = selected.value;
+                let result = document.getElementById(`result${question}`);
+                if (answer === correctAnswer) {
+                    result.innerHTML = "✔️ Správně!";
+                    result.style.color = "green";
+                } else {
+                    result.innerHTML = "❌ Špatně, zkus to znovu.";
+                    result.style.color = "red";
+                }
+            }
+        }
+
+        window.onload = generateQuestions;
+    </script>
+</head>
+<body>
+    <h2>Vyber správný tvar slovesa</h2>
+    <form id="quiz"></form>
+</body>
+</html>
